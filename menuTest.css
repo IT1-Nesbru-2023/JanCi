@@ -1,0 +1,150 @@
+body{
+    margin: 0pt;
+    padding: 0pt;
+    background-color: rgb(19, 21, 22);
+    overflow: hidden;
+}
+
+#menu{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: -2;
+    width: 55%;
+    float: left;
+}
+
+#collumn{
+    position: fixed;
+    top: 0px;
+    left: 95%;
+    float: left;
+    width: 5%;
+    height: 100vh;
+    background-color: rgb(19, 21, 22);
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(34, 37, 39);
+    
+}
+
+#powerOff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: calc(100% - 5vw);
+    width: 100%;
+    height: 5vw;
+    border-style: solid;
+    border-width: 2px;
+    border-left: none;
+    border-color: rgb(34, 37, 39);
+    transition: background-color 400ms ease;
+}
+
+#powerButton{
+    width: 40%;
+
+}
+
+#insta{
+    width: 60%;
+}
+
+#Link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5vw;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-style: solid;
+    border-width: 2px;
+    border-left: none;
+    border-top: none;
+    border-color: rgb(34, 37, 39);
+    transition: background-color 400ms ease;
+}
+
+.button:hover{
+    background-color: rgb(29, 32, 33);
+}
+
+#powerOff:hover{
+    background-color: rgba(214, 7, 7, 0.325);
+}
+
+#menuPattern{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 100vw;
+
+    background-image: radial-gradient(circle,rgba(255, 255, 255, 0.1) 4px, rgba(0, 0, 255, 0) 1px);
+    background-position: 0%, 0%;
+    background-size: 12vmin 12vmin;
+    z-index: -3;
+    background-repeat: repeat;
+    transition: background-size 800ms ease,
+        opacity 800ms ease;
+
+
+}
+
+#menuGradient{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    min-height: 100%;
+    min-width: 100%;
+
+
+    background-image: linear-gradient(to right, rgba(19, 21, 22, 1),rgba(19, 21, 22, 0));
+    background-position: 0%, 0%;
+    z-index: -2;
+    background-repeat: repeat;
+
+}
+
+.menuItem{
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 60px;
+
+    display: block;
+    padding: 10px;
+    padding-left: 10px;
+    transition: opacity 400ms ease;
+}
+
+#menuItems{
+    margin: 50px;
+}
+
+#menuItems:hover .menuItem{
+    opacity: 0.3;
+}
+
+#menuItems:hover ~ #menuPattern{
+    background-size: 11vmin 11vmin;
+}
+
+#menuItems:hover .menuItem:hover{
+    opacity: 1;
+    scale: 110%;
+
+}
+
+
+
