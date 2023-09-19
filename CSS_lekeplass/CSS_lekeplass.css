@@ -1,0 +1,35 @@
+body{
+    background-image: url(https://th.bing.com/th/id/R.0abc3fa2eae8476de52ad588b387a5e6?rik=NlQ1FoD%2fUu2xEQ&riu=http%3a%2f%2ftextures.world%2fwp-content%2fuploads%2f2018%2f10%2f1-Classic-Floor-Tile-Background-Texture-copy.jpg&ehk=9J4FLEWPCa%2fFoOu6ugx0q4cZDBm3sQ69QMkBBXAxYvk%3d&risl=&pid=ImgRaw&r=0);
+    background-size: 10%;
+    text-align: center;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+img {
+    margin: 1rem;
+    scale: 90%;
+    border: 1px solid black;
+
+}
+
+h1,h2,h3,h4{
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: auto;
+    width: fit-content;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+}
+
+p{
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: auto;
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+.sitat {
+    font-style: italic;
+}
+
