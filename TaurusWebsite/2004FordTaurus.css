@@ -1,0 +1,55 @@
+body{
+    overflow-x: hidden;
+
+}
+
+.special{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: flex-end;
+    width: 200px;
+    height: 100px;
+    position: relative;
+    animation: taurus 5s infinite;
+    overflow-x: hidden;
+    animation-timing-function:linear;
+}
+
+span{
+    border: 2px solid black;
+    margin-top: 10px;
+}        
+
+div{
+    text-align: center;
+}
+
+h1,h2,h3,p,li{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+}
+
+.main{
+    display: inline-block;
+    background-color: rgba(128, 128, 128, 0.8);
+    margin-bottom: auto;
+
+}
+
+.engine{
+    border: 4px dotted rgb(0, 241, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+img{
+    width: 600px; height: 450px;
+    margin: 10px;
+}
+
+@keyframes taurus {
+from {left: calc(0% - 200px);}
+to {left: 100%;}
+
+}
