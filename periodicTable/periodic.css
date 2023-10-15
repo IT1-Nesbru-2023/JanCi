@@ -1,0 +1,118 @@
+* {
+    word-wrap: break-word;
+    font-weight: normal;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#container {
+    margin: 0px;
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 5px;
+    padding: 10px;
+    
+    
+}
+
+.num {
+    color: rgba(255, 255, 255, 0);
+    font-size: 1vw;
+    transition: 100ms color ease-in-out;
+}
+
+.element {
+    background-color: rgb(228, 228, 228);
+    width: calc(90vw / 18);
+    height: calc(90vw / 18);
+    border-radius: 20%;
+    text-align: center;
+    z-index: 1;
+    transition: 50ms scale ease-in-out;
+    font-size: 3vw;
+}
+
+
+.element:hover{
+    z-index: 2;
+    scale: 2;
+}
+
+
+.element:hover .num {
+    z-index: 2;
+    scale: 1;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.blankr1 {
+    opacity: 0%;
+    grid-column: span 16;
+}
+
+.blankr2 {
+    opacity: 0%;
+    grid-column: span 10;
+}
+
+.blankExtra1 {
+    grid-column:span 1;
+    opacity: 0%;
+}
+
+.blankExtra2 {
+    opacity: 0%;
+    grid-column: span 1;
+}
+
+.reactiveNonMetals {
+    background-color: rgb(193, 233, 178);
+}
+
+.alkaliMetals {
+    background-color: rgb(255, 152, 152);
+}
+
+.alkaliEarthMetals {
+    background-color: rgb(255, 203, 136);
+}
+
+.transistionMetals {
+    background-color: rgb(182, 182, 254);
+}
+
+.postTransMetals {
+    background-color: rgb(174, 126, 220);
+}
+
+.metalloids {
+    background-color: rgb(255, 241, 118);
+}
+
+.nobelGases {
+    background-color: rgb(253, 189, 199);
+}
+
+.longer {
+    font-size: 1.6vw;
+}
+
+.lanthanides {
+    z-index: 1;
+    background-color: rgb(103, 103, 255);
+    color: white;
+}
+
+.actinides {
+    z-index: 0;
+    background-color: rgb(166, 220, 202);
+}
+
+#container2 {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 5px;
+    margin-top: 40px;
+}
