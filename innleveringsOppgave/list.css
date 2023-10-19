@@ -1,0 +1,21 @@
+body {
+    height: 200vh;
+}
+
+ul li {
+    color: rgb(0, 30, 255);
+}
+
+ul > li {
+    color: rgb(0, 164, 164);
+}
+
+#buddy {
+    height: 20vh;
+}
+
+#links {
+    position: absolute;
+    top: 190vh;
+    display: block;
+}
