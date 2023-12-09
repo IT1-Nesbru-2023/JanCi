@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="blackJack2.css">
+</head>
+<body>
+    <h1 id="title">Black Jack</h1>
+
+    <button onclick="location.reload()" id="reload">Play again</button>
+
+    <div id="buttonDiv">
+        <button onclick="hit()">Hit</button>
+        <button onclick="stand()">Stand</button>
+    </div>
+
+
+    <div>
+        <h2>Your Hand: <span id="playerSumDis">sum</span></h2>
+        <h2>Dealers Hand: <span id="dealerSumDis">sum</span></h2>
+
+        <h1 id="win"><span id="playerState"></span></h1>
+        
+    </div>
+
+    <div id="hands">
+        <p>Your hand: <span id="handPlayerHud"></span></p>
+        <p>Dealers hand: <span id="handDealerHud"></span></p>
+
+        <p><span id="dealerState">Dealer is playing</span></p>
+
+    </div>
+
+    <div id="instructions">
+        <h3>Instructions:</h3>
+        <p>Get as close to 21 without going over (bust) whilst competing with the dealer.</p>
+        <p>Press "Hit" to draw a card and press "Stand" to finalise the cards in your hand.</p>
+        <p>Dealer stands on 17</p>
+    </div>
+
+    <script>
+        let deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10];
+        let drawnCard;
+        let handPlayer = [];
+        let handDealer = [];
+        let dealerSum = 0;
+        let playerSum = 0;
+        let dealerStopped = false;
+        let playerStopped = false;
+
+        
+
+        //initial distribution of 2 cards to both player and dealer
+        function start() {
+            for (var i = 0; i < 2; i++) {
+                drawCard()
+                handPlayer.push(drawnCard);
+                drawCard()
+                handDealer.push(drawnCard);
+                console.log("player",handPlayer);
+                console.log("dealer", handDealer);
+
+            }
+            calcSum()
+        };
+
+
+        //draws a card 
+        function drawCard() {
+            drawnCard = deck[Math.floor(Math.random() * deck.length)];
+            deck.splice(drawnCard, 1);
+
+            checkState()
+        };
+
+
+        //hit for the player, distributes the drawn card to the players deck
+        function hit() {
+            drawCard();
+            handPlayer.push(drawnCard);
+            dealerCheck()
+            console.log("player", handPlayer);
+
+            checkState();
+        };
+
+        //stand function for the player
+        function stand() {
+            playerStopped = true;
+            dealerCheck();
+            checkState();
+        };
+
+
+        //checks if the dealer can play
+        function dealerCheck() {
+            calcSum();
+
+
+
+            if (dealerSum < 17 && playerStopped === true) {
+                while (dealerSum < 17) {
+                    drawCard();
+                    handDealer.push(drawnCard);
+                    calcSum();
+                };
+            } else if (dealerSum < 17) {
+                drawCard();
+                handDealer.push(drawnCard);
+                calcSum();
+            };
+            console.log("dealer", handDealer);
+
+            calcSum();
+
+            
+
+        };
+
+
+        //calculates the sum of each deck
+        function calcSum() {
+            dealerSum = 0;
+            for (let i = 0; i < handDealer.length; i++) {
+                dealerSum += handDealer[i];
+                console.log("dealer sum", dealerSum);
+
+            };
+
+            playerSum = 0;
+            for (let i = 0; i < handPlayer.length; i++) {
+                playerSum += handPlayer[i];
+                console.log("player sum", playerSum);
+
+            };
+
+            document.getElementById("playerSumDis").innerText = playerSum;
+            document.getElementById("dealerSumDis").innerText = dealerSum;
+
+            document.getElementById("handPlayerHud").innerText = handPlayer
+            document.getElementById("handDealerHud").innerText = handDealer
+
+            checkState();
+        }
+
+        start()
+
+
+        //checks whether a win condition has been acheived, this is check after every action.
+        function checkState() {
+
+            //makes sure that the dealer has exhausted all of his possible moves
+            if (playerSum >= 21) {
+                playerStopped = true;
+            };
+
+            if (dealerSum >= 17) {
+                document.getElementById("dealerState").innerText = "Dealer is standing";
+                dealerStopped = true;
+            };
+
+            if (dealerStopped === true && playerStopped === true) {
+                if (playerSum > 21) {
+                    document.getElementById("playerState").innerText = "You lost";
+                } else if (playerSum === dealerSum) {
+                    document.getElementById("playerState").innerText = "It's a draw";
+                } else if (playerSum > 21 && dealerSum > 21) {
+                    document.getElementById("playerState").innerText = "It's a draw";
+                } else if (playerSum === 21 && dealerSum !== 21) {
+                    document.getElementById("playerState").innerText = "You win";
+                } else if (playerSum !== 21 && dealerSum === 21) {
+                    document.getElementById("playerState").innerText = "You lost";
+                } else if (playerSum < dealerSum && dealerSum <= 21) {
+                    document.getElementById("playerState").innerText = "You lost";
+                } else if (playerSum > dealerSum && playerSum <= 21) {
+                    document.getElementById("playerState").innerText = "You win";
+                } else if (playerSum < dealerSum && dealerSum > 21) {
+                    document.getElementById("playerState").innerText = "You win";
+                }
+
+            }
+        };
+
+
+
+    </script>
+</body>
+</html>
