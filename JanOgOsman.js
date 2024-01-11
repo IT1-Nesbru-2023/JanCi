@@ -1,5 +1,3 @@
-let list = [0, 2, 0, 4, 5, 6];
-
 function summerTall(tall1) {
 
 
@@ -14,7 +12,3 @@ function summerTall(tall1) {
         return false;
     };
 };
-
-
-let answer = summerTall(list);
-console.log(answer);
