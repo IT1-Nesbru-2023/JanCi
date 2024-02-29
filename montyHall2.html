@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            text-align: center;
+        }
+
+        
+
+        #door1, #door2, #door3 {
+            display: inline;
+            margin: 5px;
+        }
+
+        img {
+            width: 25vw;
+            height: 25vw;
+            padding: 5px;
+        }
+        
+        #buttonContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+
+        }
+
+        button {
+            scale: 2;
+            margin: 50px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="door1"><img id="door1img" src="" alt=""></div>
+        <div id="door2"><img id="door2img" src="" alt=""></div>
+        <div id="door3"><img id="door3img" src="" alt=""></div>
+    </div>
+    <div id="buttonContainer">
+        <button id="button" onclick="submit()">submit</button>
+    </div>
+    
+
+    
+    <script>
+        let chosenDoorIndex = 5;
+        let choice = 0;
+
+        let doorArray = ["goat","goat", "goat"]
+        
+        let randNum = Math.floor(Math.random()*(doorArray.length))
+
+        let door1img = document.getElementById("door1img");
+        let door2img = document.getElementById("door2img");
+        let door3img = document.getElementById("door3img");
+
+        let doorImg = [door1img, door2img, door3img]
+    
+
+
+
+        //console.log(randNum)
+        doorArray.splice(randNum, 1, "car");
+        console.log(doorArray);
+
+
+        function openDoor(e) {
+            doorImg[0].style.border = "0px solid white";
+            doorImg[1].style.border = "0px solid white";
+            doorImg[2].style.border = "0px solid white";
+
+            let chosenDoor = e.target;
+            console.log(chosenDoor);
+            chosenDoorIndex = doorImg.indexOf(chosenDoor);
+            console.log(chosenDoorIndex)
+
+
+
+            console.log("new array:", doorArray);
+
+            doorImg[chosenDoorIndex].style.border = "2px solid red";
+
+
+        };
+
+
+        function submit() {
+            if (doorArray[chosenDoorIndex] === "car") {
+                if (choice > 0) {
+                    doorImg[chosenDoorIndex].src = "taurus.jpg";
+                    document.body.style.backgroundColor = "green";
+                    document.getElementById("button").remove();
+                }
+                doorArray[chosenDoorIndex] = "open";
+            } else {
+                if (choice > 0) {
+                    doorImg[chosenDoorIndex].src = "goat.jpg";
+                    document.body.style.backgroundColor = "red";
+                    document.getElementById("button").remove();
+                }
+                doorArray[chosenDoorIndex] = "open";
+
+            }
+
+            
+            choice = choice + 1;
+
+            let i = 0;
+
+            while (i<3) {
+                if (doorArray[i] === "goat") {
+                    doorImg[i].src = "goat.jpg"
+                    return
+                };
+
+                i++;
+            }
+
+        }
+
+        function shuffle() {
+            let i = 0;
+
+            while (i < 3) {
+                doorImg[i].addEventListener("click", openDoor);
+
+                console.log(doorArray[i]);
+                if (doorArray[i] === "car") {
+                    //document.write("car");
+                    doorImg[i].src = "door.jpg";
+
+                } else if (doorArray[i] !== "car") {
+                    //document.write("goat");
+                    doorImg[i].src = "door.jpg";
+
+                }
+                    
+
+                i++;
+
+            };
+
+        };
+
+        shuffle();
+        
+
+
+        
+    </script>
+</body>
+</html>
