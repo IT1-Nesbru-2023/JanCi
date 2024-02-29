@@ -118,8 +118,9 @@
 
             while (i<3) {
                 if (doorArray[i] === "goat") {
-                    doorImg[i].src = "goat.jpg"
-                    return
+                    doorImg[i].src = "goat.jpg";
+                    doorImg[i].removeEventListener("click",openDoor);
+                    return;
                 };
 
                 i++;
