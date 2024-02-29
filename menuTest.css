@@ -2,7 +2,7 @@ body{
     margin: 0pt;
     padding: 0pt;
     background-color: rgb(19, 21, 22);
-    overflow: hidden;
+    overflow: auto;
 }
 
 #menu{
