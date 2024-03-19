@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            
+            overflow: hidden;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #screen {
+            display: flex;
+        }
+
+        #menu {
+            border: 1px solid black;
+            width: max-content;
+            height: 100vh;
+        }
+
+        #disp {
+            padding-top: 30px;
+            border: 1px solid black;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container {
+            margin-left: 5px;
+            display: flexbox;
+            margin-top: 5px;
+        }
+
+        #card {
+            border: 5px solid black;
+            margin: auto;
+            width: 450px;
+            height: 250px;
+            padding: 10px;
+        }
+
+        #info {
+            float: right;
+            width: 200px;
+        }
+
+        #nameDisp {
+            top: 50%;
+        } 
+
+        h3, h2, h1 {
+            margin: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="screen">
+        <div id="menu">
+            <div class="container">
+                <input type="text" id="nameInp" placeholder="Name">
+            </div>
+    
+            <div class="container">
+                <select name="Sex" id="sexInp">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="container">
+                <input type="text" placeholder="Position" id="posInp">
+            </div>
+    
+            <div class="container">
+                <input type="number" placeholder="Phone Number" id="numInp">
+            </div>
+    
+            <div class="container">
+                <label for="license">License: </label>
+                <input type="checkbox" id="licenseInp" placeholder="Drivers License">
+            </div>
+    
+            <div class="container">
+                <input type="color" id="colour">
+            </div>
+    
+            <div class="container">
+                <p>Frame Style</p>
+            </div>
+    
+            <div class="container">
+                <input type="radio" class="frame" id="_A" name="frame">
+                <label for="_A">A</label>
+            </div>
+            <div class="container">
+                <input type="radio" class="frame" id="_B" name="frame">
+                <label>B</label>
+            </div>
+            <div class="container">
+                <input type="radio" class="frame" id="_C" name="frame">
+                <label>C</label>
+            </div>
+            <div class="container">
+                <label>DoB:</label>
+                <input type="date" name="dob" id="dobInp">
+            </div>
+            <div class="container">
+                <label>Img:</label>
+                <input type="file" name="file" id="file">
+            </div>
+
+            <div class="container">
+                <button onclick="submit()">Submit</button>
+            </div>
+    
+    
+            
+        </div>
+    
+        <div id="disp">
+            <div id="card">
+                <img id="imgDisp" src="#" alt="">
+                <div id="info">
+                    <h2 id="nameDisp">Name</h3>
+                    <h3 id="sexDisp">Sex</h3>
+                    <h3 id="posDisp">Pos</h3>
+                    <h3 id="numDisp">Num.</h3>
+                    <h3 id="licenseDisp">License</h3>
+                    <h3 id="dob">DoB</h3>
+                </div>
+
+            </div>
+    
+        </div>
+
+    </div>
+
+    <script src="vissitkort.js"></script>
+</body>
+</html>
