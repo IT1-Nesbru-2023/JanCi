@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        @keyframes popup {
+            0%      {opacity: 0%;}
+            10%     {opacity: 100%;}
+            80%     {opacity: 100%;}
+            100%    {opacity: 0%;}
+        }
+
+        body {
+            background-color: #daddde;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 8px;
+            margin: 4px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            align-items: center;
+            width: 50vw;
+        }
+
+        .delete {
+            cursor: pointer;
+            color: red;
+            margin-right: 20px;
+        }
+
+        .block {
+            margin-right: 20px;
+            display: inline;
+
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1>ToDo List</h1>
+    <input id="inpTekst1" type="text" placeholder="ToDo">
+    <button id="btnOK" class="ok">Legg til</button>
+    <ul id="firebaseInnhold"></ul>
+
+    <div id="popup">
+
+    </div>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getFirestore, query, collection, getDocs, addDoc, deleteDoc, orderBy, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCWMW_xgKTN-XBWHUKJkWLMVl5-XpyquLQ",
+            authDomain: "chatroom-96129.firebaseapp.com",
+            projectId: "chatroom-96129",
+            storageBucket: "chatroom-96129.appspot.com",
+            messagingSenderId: "406774573451",
+            appId: "1:406774573451:web:319efed42794342899278e"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        
+        // Select elements
+        let inpTekst1 = document.getElementById("inpTekst1");
+        let btnOK = document.getElementById("btnOK");
+        let firebaseInnhold = document.getElementById("firebaseInnhold");
+        let popup = document.getElementById("popup")
+
+        // Add event listener to the button
+        btnOK.addEventListener("click", skrivTilFirebase);
+        
+        async function skrivTilFirebase() {
+            const date = new Date()
+            const hours = date.getHours()
+            const minutes = date.getMinutes()
+            const day = date.getDay()
+            const timestamp = date.getTime()
+            console.log(hours)
+            console.log(minutes)
+
+            if (inpTekst1.value == "") {
+                alert("Du må skrive noe...");
+                return;
+            }
+
+            // Add data to Firestore
+            await addDoc(collection(db, "todo"), {
+                todo: inpTekst1.value,
+                date: hours + ":" + minutes,
+                timestamp: timestamp
+            });
+
+            // Clear the input field
+            inpTekst1.value = "";
+        }
+
+        // Query to get all documents in the "todo" collection
+        const q = query(collection(db, "todo"),orderBy("timestamp"));
+
+        // Update the HTML page on changes to the database
+        onSnapshot(q, (snapshot) => {
+            firebaseInnhold.innerHTML = "";
+
+            // Iterate through all documents in the collection
+            snapshot.forEach((doc) => {
+
+
+
+                const data = doc.data();
+                const listItem = document.createElement("li");
+                
+
+                // Create delete button
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "X";
+                deleteButton.classList.add("delete");
+                deleteButton.addEventListener("click", () => {
+                    deleteTodoItem(doc.id);
+
+                });
+
+                const todoText = document.createElement("div")
+                todoText.classList.add("block")
+                todoText.textContent = data.todo;
+
+
+                const dateVis = document.createElement("div")
+                dateVis.style.position = "absolute";
+                dateVis.style.left = "46vw"
+                dateVis.style.display = "inline";
+                dateVis.textContent = data.date;
+
+                //const timestamp = document.createTextNode(hours)
+                
+
+                listItem.appendChild(deleteButton);
+
+                listItem.appendChild(todoText);
+                listItem.appendChild(dateVis)
+                
+                firebaseInnhold.appendChild(listItem);
+
+                console.log(data.timestamp)
+            });
+        });
+
+        // Function to delete a specific document
+        async function deleteTodoItem(id) {
+            await deleteDoc(doc(db, "todo", id));
+        }
+    </script>
+</body>
+
+</html>
